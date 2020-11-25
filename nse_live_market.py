@@ -56,18 +56,21 @@ def notify_via_email():
 
     ul = """<ul class="SG">"""
     for ticker in tickertapelist:
-        li = """
+        color = 'green'
+        percent_change = float(ticker['percent_change'].replace('%',''))
+        if percent_change < 0.0:
+            color = 'red'
+        li = f"""
         <li class="sgLi">
             <div class="box">
-            <h3>{0}</h3>
+            <h3>{ticker['symbol']}</h3>
             <ul class="df">
-            <li>Current Price : {1}</li>
-            <li>Change : {2} ( {3} )</li>
+            <li>Current Price : {ticker['current_price']}</li>
+            <li>Change : <strong style='color={color}'>{ticker['change']} ( {ticker['percent_change']} )</strong> </li>
             </ul>
             </div>
         </li>"""
-        li.format(ticker['symbol'], ticker['current_price'],
-                  ticker['change'], ticker['percent_change'])
+        ul = ul+li
     ul = ul + """</ul>"""
 
 
@@ -75,7 +78,7 @@ def notify_via_email():
     <html>
     <body>
         <h3>Dear Sir,</h3>
-        <p style="font-size:16px;">
+        <p style="font-size:18px;">
         We hope you are doing great!<br>
     """
 
@@ -86,7 +89,18 @@ def notify_via_email():
     </html>
     """
 
+    # html = """
+    #  <html>
+    #  <body
+    #     <h2>Hello there!</h2>
+    #  </body>
+    #  </html>
+    #  """
+
+
+
     body = MIMEText(html, "html")
+    message.attach(body)
 
     try:
         # Create secure connection with server and send email
