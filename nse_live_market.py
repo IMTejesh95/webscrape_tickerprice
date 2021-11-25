@@ -45,9 +45,9 @@ print(tickertapelist)
 
 def notify_via_email():
     # Email configuration
-    sender_email = 'tejaschauragade7@gmail.com'
-    receiver_email = 'chauragade.tejesh@gmail.com'
-    password = '9545223055'
+    sender_email = 'sender@example.com'
+    receiver_email = 'reciever@example.com'
+    password = '<password-here>'
 
     message = MIMEMultipart("alternative")
     message["Subject"] = "Ticker price updates for your watchlist!"
@@ -88,14 +88,6 @@ def notify_via_email():
     </body>
     </html>
     """
-
-    # html = """
-    #  <html>
-    #  <body
-    #     <h2>Hello there!</h2>
-    #  </body>
-    #  </html>
-    #  """
 
 
 
