@@ -23,7 +23,7 @@ def get_tickerinfo(url):
     page = requests.get(url)
     soup = BeautifulSoup(page.content, 'html.parser')
 
-    ticker = soup.find(class_="jsx-2256451 sidebar desktop--only")
+    ticker = soup.find(class_="jsx-3263652298 jsx-767281945 stocks-sidebar-container desktop--only")
     name = ticker.select('.ticker')[0].get_text()
     current_price = ticker.select('.current-price')[0].get_text()
     change = ticker.select('.change')[0].get_text()
